@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Create New Post - CloudStack Blog{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-20">
+    <div class="bg-white border border-slate-100 p-8 md:p-16 shadow-sm">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl font-serif font-bold mb-4">Create New Story</h1>
+            <p class="text-slate-400 text-xs uppercase tracking-widest">Share your thoughts with the world</p>
+        </header>
+        
+        <form action="/create" method="POST" class="space-y-10">
+            <div>
+                <label for="title" class="block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-2">Title</label>
+                <input type="text" name="title" id="title" required
+                    placeholder="Enter a compelling title..."
+                    class="w-full px-0 py-3 bg-transparent border-b border-slate-200 focus:outline-none focus:border-slate-900 transition-colors text-2xl font-serif">
+            </div>
+
+            <div>
+                <label for="category" class="block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-2">Category</label>
+                <select name="category" id="category"
+                    class="w-full px-0 py-3 bg-transparent border-b border-slate-200 focus:outline-none focus:border-slate-900 transition-colors text-sm uppercase tracking-widest font-bold text-slate-500">
+                    <option value="Journal">Journal</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="summary" class="block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-2">Summary (Optional)</label>
+                <input type="text" name="summary" id="summary"
+                    placeholder="A brief introduction to your story..."
+                    class="w-full px-0 py-3 bg-transparent border-b border-slate-200 focus:outline-none focus:border-slate-900 transition-colors text-lg italic font-serif text-slate-500">
+            </div>
+
+            <div>
+                <label for="featured_image" class="block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-2">Featured Image URL (Optional)</label>
+                <input type="url" name="featured_image" id="featured_image"
+                    placeholder="https://images.unsplash.com/..."
+                    class="w-full px-0 py-3 bg-transparent border-b border-slate-200 focus:outline-none focus:border-slate-900 transition-colors text-sm font-mono text-slate-500">
+            </div>
+            
+            <div>
+                <label for="content" class="block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 mb-2">Content</label>
+                <textarea name="content" id="content" rows="15" required
+                    placeholder="Tell your story..."
+                    class="w-full px-0 py-3 bg-transparent border-b border-slate-200 focus:outline-none focus:border-slate-900 transition-colors text-slate-700 font-serif leading-loose resize-none"></textarea>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 pt-8">
+                <button type="submit"
+                    class="w-full sm:w-auto px-12 py-4 bg-slate-900 text-white text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-slate-800 transition-all">
+                    Publish Story
+                </button>
+                <a href="/" class="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-400 hover:text-slate-900 transition-colors">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
