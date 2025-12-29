@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install
-      - name: Run Linting (optional)
+      - name: Run Linting
         run: |
           pip install flake8
           flake8 blog_app --count --select=E9,F63,F7,F82 --show-source --statistics
