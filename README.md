@@ -33,13 +33,15 @@ The application will be available at [http://localhost:8000](http://localhost:80
 
 ## 🏗️ Architecture & Infrastructure
 
-The project uses a multi-tier architecture deployed on AWS:
+The project uses a simplified multi-tier architecture optimized for the AWS Free Tier:
 
-- **Networking**: VPC with public subnets (for Load Balancer) and private subnets (for App & DB).
+- **Networking**: VPC with public subnets for all resources (ALB, ECS Tasks, and RDS).
 - **Compute**: AWS ECS (Elastic Container Service) running on Fargate (Serverless).
 - **Database**: AWS RDS (Relational Database Service) running PostgreSQL.
 - **Storage**: AWS S3 for static assets and uploads.
 - **Security**: Fine-grained security groups and IAM roles.
+
+*Note: For Free Tier compatibility and simplicity, all resources are deployed in public subnets. This avoids NAT Gateway costs while maintaining ECR and internet connectivity for the tasks.*
 
 The infrastructure is defined as Code in the `terraform/` directory.
 
