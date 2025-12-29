@@ -71,17 +71,33 @@ terraform apply
 
 ### 3. CI/CD Pipeline
 The project includes a GitHub Actions pipeline (`.github/workflows/main.yml`) that automates:
-1. **Build & Test**: Verifies the Python application.
-2. **Docker Push**: Builds and pushes the latest image to Amazon ECR.
-3. **Infrastructure Update**: Automatically runs `terraform apply`.
-4. **ECS Deployment**: Updates the Fargate service to use the new image.
+1. **Build & Test**: Verifies the Python application on every push.
+2. **Terraform Plan**: On every push to `main`, it shows the infrastructure changes that would be applied.
+3. **Manual Deployment**: To apply changes, go to the **Actions** tab, select the **CI/CD Pipeline**, and run it manually with the `apply` action. This will:
+   - Build and push the latest Docker image to Amazon ECR.
+   - Run `terraform apply` to update infrastructure and deploy the new image to ECS.
+4. **Optional Cleanup**: A manual trigger to run `terraform destroy` via the same "Run workflow" menu.
 
 **Required GitHub Secrets:**
 - `AWS_ACCESS_KEY_ID`
 - `AWS_SECRET_ACCESS_KEY`
-- `DATABASE_URL` (Production endpoint)
+- `DB_PASSWORD`
+- `S3_BUCKET_NAME`
+- `DATABASE_URL` (Optional for local testing)
 
 ---
+
+## 🗑️ Destroying Resources
+
+To avoid incurring costs when you are not using the blog, you can destroy all AWS resources:
+
+1. Go to the **Actions** tab in your GitHub repository.
+2. Select the **CI/CD Pipeline** workflow on the left.
+3. Click the **Run workflow** dropdown.
+4. Select **destroy** from the "Action to perform" dropdown.
+5. Click **Run workflow**.
+
+This will execute `terraform destroy` and safely remove all provisioned infrastructure.
 
 ## 🛠️ Tech Stack
 
